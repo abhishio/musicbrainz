@@ -196,7 +196,7 @@ cd $home/musicbrainz-server/
 ##############################################################################
 Msg setup PostgreSql Database and Authentication
 ##############################################################################
-udo sed -i '85ilocal all all ident'    /etc/postgresql/9.5/main/pg_hba.conf.b   2>>  $a 
+sudo sed -i '85ilocal all all ident'    /etc/postgresql/9.5/main/pg_hba.conf.b   2>>  $a 
 Result "Local all trust" "Editing pg_hba.conf"
 sudo sed -i '86ilocal    musicbrainz_db    ubuntu    ident    map=mb_map'     /etc/postgresql/9.5/main/pg_hba.conf.b	 2>>  $a
 Result "Musicbrainz_db ident" "Adding Musicbrainz in pg_ident.conf"
