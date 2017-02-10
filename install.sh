@@ -137,7 +137,7 @@ Result "Modified Token", "Configuring Token DBDefs.pm"
 Msg "Installing perl and dependenciess"
 ##############################################################################
 Msg "Configure local::lib"
-sudo apt-get install libxml2-dev libpq-dev libexpat1-dev libdb-dev libicu-dev liblocal-lib-perl cpanminus -y    2>>  $a
+sudo apt-get install libxml2-dev libpq-dev libexpat1-dev libdb-dev libicu-dev liblocal-lib-perl libhtml-html5-sanity-perl cpanminus -y    2>>  $a
 #Enable local::lib
 sudo echo 'eval $( perl -Mlocal::lib )' >> ~/.bashrc   2>>  $a
 Result "Local Lib entry added to bashrc" "Adding Entry to .bashrc"
@@ -193,14 +193,14 @@ sudo make install   2>>  $a
 Result "Installed Musicbrainz_collate Extension" "Installing musicbrainz_collate Extension"
 cd $home/musicbrainz-server/    
 
-##############################################################################
-Msg setup PostgreSql Database and Authentication
-##############################################################################
-sudo sed -i '85ilocal all all ident'    /etc/postgresql/9.5/main/pg_hba.conf.b   2>>  $a 
+##############################################################################################
+Msg setup PostgreSql Database and Authentication # Set below according to your server security
+##############################################################################################
+sudo sed -i '85ilocal all all trust'    /etc/postgresql/9.5/main/pg_hba.conf   2>>  $a 
 Result "Local all trust" "Editing pg_hba.conf"
-sudo sed -i '86ilocal    musicbrainz_db    ubuntu    ident    map=mb_map'     /etc/postgresql/9.5/main/pg_hba.conf.b	 2>>  $a
+sudo sed -i '86ilocal    musicbrainz_db    ubuntu    ident    map=mb_map'     /etc/postgresql/9.5/main/pg_hba.conf	 2>>  $a
 Result "Musicbrainz_db ident" "Adding Musicbrainz in pg_ident.conf"
-echo "mb_map    ubuntu    musicbrainz" | sudo tee -a  /etc/postgresql/9.5/main/pg_ident.conf.b	 2>>  $a
+echo "mb_map    ubuntu    musicbrainz" | sudo tee -a  /etc/postgresql/9.5/main/pg_ident.conf	 2>>  $a
 Result "Add system user in Ident.conf" "Adding user in pg_ident.conf"
 
 
