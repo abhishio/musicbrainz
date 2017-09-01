@@ -12,7 +12,7 @@ do
 sudo  wget $a$latest$b$x$d
 done
 
-sudo cp $HOME/runMusicBrainz.sh /bin/musicbrainz
+sudo cp $HOME/startMusicBrainz.sh /bin/musicbrainz
 echo "/bin/musicbrainz" | sudo tee -a /etc/rc.local
 
 cd /opt/musicbrainz/musicbrainz-server/ && exec `./admin/InitDb.pl --createdb --import /opt/musicbrainz/mbdump/mbdump*.tar.bz2 --echo`
